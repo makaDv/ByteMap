@@ -113,6 +113,12 @@ def cmd_trash(args) -> int:
     return 0 if not refused else 1
 
 
+def cmd_gui(args) -> int:
+    from .gui import main as gui_main
+
+    return gui_main(args.path)
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         prog="bytemap",
@@ -152,10 +158,18 @@ def build_parser() -> argparse.ArgumentParser:
     t.add_argument("--apply", action="store_true", help="really move (otherwise dry run)")
     t.add_argument("--yes", action="store_true", help="skip the confirmation prompt")
     t.set_defaults(func=cmd_trash)
+
+    g = sub.add_parser("gui", help="open the graphical interface")
+    g.add_argument("path", nargs="?", default=None, help="folder to pre-fill")
+    g.set_defaults(func=cmd_gui)
     return p
 
 
 def main(argv: list[str] | None = None) -> int:
+    if argv is None:
+        argv = sys.argv[1:]
+    if not argv:  # no arguments: open the graphical interface
+        argv = ["gui"]
     args = build_parser().parse_args(argv)
     try:
         return args.func(args)

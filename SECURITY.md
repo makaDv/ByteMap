@@ -13,6 +13,8 @@ Include the steps to reproduce and the affected version. You will get an answer 
 - No network access: ByteMap never sends data anywhere.
 - No permanent deletion: `bytemap trash` moves items to the Recycle Bin / Trash only.
 - Dry run by default: `trash` needs `--apply`, then a typed `YES` (or `--yes`).
+- The graphical interface asks for confirmation (default: No) before moving anything, and
+  refuses to move every copy of a duplicate group.
 - Protected locations: filesystem roots and system folders (for example `C:\Windows`,
   `C:\Program Files`, `/etc`, `/usr`) are always refused.
 - Symlinks and junctions are never followed or trashed.

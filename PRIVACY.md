@@ -9,6 +9,8 @@
   Regulation (EU) 2016/679).
 - ByteMap reads file names, sizes and dates. It reads file contents only to compare possible
   duplicates (SHA-256 hashes, computed in memory and never stored or sent).
+- ByteMap stores no settings, history or logs. The only files it writes are the HTML reports you
+  explicitly export, in the location you choose.
 - The HTML report you create holds file and folder paths from your computer. These paths may
   include personal information, such as your user name or document titles. The report is a
   local file under your control: think before you share it. Use `--redact-home` to replace your

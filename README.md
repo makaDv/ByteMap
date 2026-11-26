@@ -6,7 +6,9 @@ forgot, and duplicate files. It writes an interactive HTML treemap report.
 **Fully offline.** No telemetry, no network access, no data leaves your computer.
 See [PRIVACY.md](PRIVACY.md).
 
-**Guida in italiano:** [docs/GUIDA.md](docs/GUIDA.md)
+**Manuale di istruzioni (italiano):** [docs/MANUALE.md](docs/MANUALE.md)
+
+![ByteMap main window: folder treemap and statistics (demo data)](docs/img/01-folders.png)
 
 ## Quick start (graphical interface)
 

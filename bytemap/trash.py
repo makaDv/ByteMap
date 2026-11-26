@@ -31,9 +31,14 @@ def _protected_roots() -> list[str]:
 
 
 def is_protected(path: str) -> bool:
-    """True for system locations and filesystem roots."""
+    """True for system locations, filesystem roots and the user-profile folders themselves."""
     full = os.path.normcase(os.path.abspath(path))
     if os.path.dirname(full) == full:  # drive or filesystem root
+        return True
+    # The home folder and the folder that holds all profiles (C:\Users, /home) are refused
+    # as a whole; files and subfolders inside them are allowed.
+    home = os.path.normcase(os.path.abspath(os.path.expanduser("~")))
+    if full in (home, os.path.dirname(home)):
         return True
     for root in _protected_roots():
         r = os.path.normcase(os.path.abspath(root))

@@ -3,4 +3,4 @@
 All processing happens locally. ByteMap never opens network connections.
 """
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"

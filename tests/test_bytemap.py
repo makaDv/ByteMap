@@ -115,3 +115,24 @@ def test_cli_trash_dry_run_keeps_file(tree):
     target = tree / "a" / "big.bin"
     assert main(["trash", str(target)]) == 0
     assert target.exists()
+
+
+def test_squarify_fills_area_without_overlap():
+    from bytemap.treemap import squarify
+
+    sizes = [500, 300, 120, 50, 20, 9, 1]
+    rects = squarify(sizes, 0, 0, 400, 300)
+    area = sum(w * h for _, _, w, h in rects)
+    assert abs(area - 400 * 300) < 1e-6
+    for (x, y, w, h), s in zip(rects, sizes):
+        assert x >= -1e-9 and y >= -1e-9 and x + w <= 400 + 1e-6 and y + h <= 300 + 1e-6
+        assert abs(w * h - s / sum(sizes) * 400 * 300) < 1e-6
+    assert squarify([], 0, 0, 10, 10) == []
+    assert squarify([0, 0], 0, 0, 10, 10) == [(0, 0, 0.0, 0.0)] * 2
+
+
+def test_trash_refuses_home_and_profiles_folder():
+    home = os.path.expanduser("~")
+    assert is_protected(home)
+    assert is_protected(os.path.dirname(home))
+    assert not is_protected(os.path.join(home, "Downloads", "file.zip"))

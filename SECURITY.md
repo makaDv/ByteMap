@@ -16,7 +16,8 @@ Include the steps to reproduce and the affected version. You will get an answer 
 - The graphical interface asks for confirmation (default: No) before moving anything, and
   refuses to move every copy of a duplicate group.
 - Protected locations: filesystem roots and system folders (for example `C:\Windows`,
-  `C:\Program Files`, `/etc`, `/usr`) are always refused.
+  `C:\Program Files`, `/etc`, `/usr`), the home folder itself and the folder holding all user
+  profiles (`C:\Users`, `/home`) are always refused.
 - Symlinks and junctions are never followed or trashed.
 - The HTML report escapes all file names and sets a Content-Security-Policy that blocks
   external requests.

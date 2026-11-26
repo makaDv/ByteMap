@@ -422,6 +422,8 @@ class App(tk.Tk):
         c.delete("all")
         self._tiles.clear()
         w, h = c.winfo_width(), c.winfo_height()
+        if w <= 1 or h <= 1:  # not mapped yet (hidden window): use the configured size
+            w, h = int(c.cget("width")), int(c.cget("height"))
         items = self._tile_items()
         if not items:
             msg = "Choose a folder and press Scan" if not self.result else "This folder is empty"
